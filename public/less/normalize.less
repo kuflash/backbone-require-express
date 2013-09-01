@@ -1,0 +1,591 @@
+/*
+Theme Name: HTML Framework
+Theme URI: Developement
+Description:
+Version: 2
+Author: João Sardinha
+Author URI: http://johnsardine.com/
+Tags:
+*/
+
+//Imports
+@import 'normalize/variables';
+@import 'normalize/normalize';
+@import 'normalize/mixins';
+@import 'normalize/elements';
+@import 'normalize/grid';
+
+// Grays
+@black:             #000;
+@grayDark:          lighten(@black, 25%);
+@gray:              lighten(@black, 50%);
+@grayLight:         lighten(@black, 75%);
+@grayLighter:       lighten(@black, 90%);
+@white:             #fff;
+
+// Links
+@linkColor:         #f06529;
+@linkColorHover:    darken(@linkColor, 10);
+
+// Baseline grid
+@basefont:          12px;
+@baseline:          @basefont + 8;
+
+//Clearfixing Elements
+.cf {
+	zoom: 1;
+
+	&:before,
+	&:after {
+		content:'';
+		display:table;
+	}
+
+	&:after {
+		clear: both;
+	}
+}
+
+body.debug {
+	* {
+		background: rgba(0,0,0,0.1);
+	}
+}
+
+
+
+
+/* ================================================ */
+/* ! Primary Styling */
+/* ================================================ */
+
+body {
+	margin: 0 auto;
+	color: @grayDark;
+	font-family: sans-serif;
+	font-size: @basefont;
+	line-height: @baseline;
+	*font-size:small;
+
+	-webkit-font-smoothing: antialiased;
+}
+
+/* === Hyperlinks === */
+a {
+	color: @linkColor;
+	text-decoration: none;
+}
+a:visited {
+	color: @linkColor;
+}
+a:active {
+	color: @linkColor;
+	text-decoration: none;
+}
+a:hover {
+	color: @linkColorHover;
+	text-decoration: underline;
+}
+
+
+
+
+
+/* ================================================ */
+/* ! Abstractions */
+/* ================================================ */
+
+/* Margins */
+.mt {
+	margin-top: @baseline;
+}
+.mt-half {
+	margin-top: @baseline / 2;
+}
+.mt-double {
+	margin-top: @baseline * 2;
+}
+
+.mb {
+	margin-bottom: @baseline;
+}
+.mb-half {
+	margin-bottom: @baseline / 2;
+}
+.mb-double {
+	margin-bottom: @baseline * 2;
+}
+
+.ml {
+	margin-left: @baseline;
+}
+.ml-half {
+	margin-left: @baseline / 2;
+}
+.ml-double {
+	margin-left: @baseline * 2;
+}
+
+.mr {
+	margin-right: @baseline;
+}
+.mr-half {
+	margin-right: @baseline / 2;
+}
+.mr-double {
+	margin-right: @baseline * 2;
+}
+
+/* Paddings */
+.pt {
+	padding-top: @baseline;
+}
+.pt-half {
+	padding-top: @baseline / 2;
+}
+.pt-double {
+	padding-top: @baseline * 2;
+}
+
+.pb {
+	padding-bottom: @baseline;
+}
+.pb-half {
+	padding-bottom: @baseline / 2;
+}
+.pb-double {
+	padding-bottom: @baseline * 2;
+}
+
+.pl {
+	padding-left: @baseline;
+}
+.pl-half {
+	padding-left: @baseline / 2;
+}
+.pl-double {
+	padding-left: @baseline * 2;
+}
+
+.pr {
+	padding-right: @baseline;
+}
+.pr-half {
+	padding-right: @baseline / 2;
+}
+.pr-double {
+	padding-right: @baseline * 2;
+}
+
+/* Styling */
+.uppercase {
+	text-transform: uppercase;
+}
+
+/* Navigations */
+.nav {
+	.cf;
+	padding: 0;
+	margin: 0;
+	list-style: none;
+
+	ul {
+		list-style: none;
+		padding: 0;
+		margin: 0;
+	}
+
+	> li {
+		float: left;
+	}
+
+	a {
+		display: inline-block;
+	}
+}
+
+.nav-dropdown {
+
+	> li > ul {
+		top: 100%;
+	}
+
+	ul {
+		width: 100px;
+		position: absolute;
+		left: 0;
+		z-index: 1;
+		display: none;
+
+		ul {
+			top: 0;
+			left: 100%;
+		}
+
+		a,
+		li {
+			display: block;
+		}
+	}
+
+	li {
+		position: relative;
+	}
+	a:focus + ul {
+		display: block;
+	}
+	li:hover > ul {
+		display: block;
+	}
+
+}
+
+
+
+/* ================================================ */
+/* ! Content Sections */
+/* ================================================ */
+
+/* Reusable */
+.inside {
+	margin-left: auto;
+	margin-right: auto;
+	max-width: 940px;
+}
+
+/* Main content section */
+.main {
+}
+
+/* Sidebar area */
+.sidebar {
+}
+
+/* both */
+.main,
+.sidebar {
+	//border-top: 3px solid #f5f5f5;
+	padding-top: @baseline;
+}
+
+
+
+
+/* ================================================ */
+/* ! Layout Organization */
+/* ================================================ */
+
+.layout-left,
+.layout-right {
+	.cf;
+	.main {
+		width: 640px;
+	}
+	.sidebar {
+		width: 260px;
+	}
+}
+/* Main content right */
+.layout-left {
+	.main {
+		float: left;
+		padding-right: 19px;
+		border-right: 1px solid @grayLighter;
+	}
+	.sidebar {
+		float: right;
+		//background: rgba(0,0,0,0.1);
+		padding-left: 20px;
+		//border-left: 3px solid #f5f5f5;
+	}
+}
+
+/* Main content right */
+.layout-right {
+	.main {
+		float: right;
+		padding-left: 19px;
+		border-left: 1px solid @grayLighter;
+	}
+	.sidebar {
+		float: left;
+	}
+}
+
+
+
+
+/* ================================================ */
+/* ! Header */
+/* ================================================ */
+
+.header {
+	.cf;
+	padding-top: 30px;
+	position: relative;
+	border-bottom: 3px solid #f5f5f5;
+	//margin-bottom: @baseline;
+}
+body {
+	border-top: 3px solid @linkColor;
+}
+.logo {
+	position: relative;
+	z-index: 1;
+}
+
+.navigation {
+	margin-top: 20px;
+	border-bottom: 1px solid lighten(@black, 90%);
+}
+
+
+
+
+/* ================================================ */
+/* ! Content */
+/* ================================================ */
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6,
+.h1,
+.h2,
+.h3,
+.h4,
+.h5,
+.h6 {
+	a {
+		.transition-all();
+		&:hover {
+			text-decoration: none;
+		}
+	}
+}
+
+
+
+/* ================================================ */
+/* ! Forms */
+/* ================================================ */
+
+.form {
+	.mb;
+}
+
+.form-field {
+	.cf;
+	.mb-half;
+}
+.form-label-fixed {
+	float: left;
+	display: inline-block;
+	width: 150px;
+	margin-right: 10px;
+}
+.form-label-fixed + div {
+	float: left;
+}
+
+
+/* Error Messages */
+.form-message-error {
+	color: desaturate(red, 20);
+}
+
+
+
+/* ================================================ */
+/* ! Lists */
+/* ================================================ */
+
+.clean-list {
+	margin: 0;
+	padding: 0;
+	list-style: none;
+}
+
+
+
+/* ================================================ */
+/* ! Media Object */
+/* ================================================ */
+
+.media {
+	.cf;
+
+	.bd {
+		overflow: hidden;
+		_overflow: visible;
+		zoom:1;
+	}
+
+	.img img {
+		display:block;
+	}
+	.img {
+		float:left;
+		margin-right: 10px;
+	}
+	.imgExt {
+		float:right;
+		margin-left: 10px;
+	}
+}
+
+
+
+/* ================================================ */
+/* ! Images */
+/* ================================================ */
+
+.img-auto,
+.auto-img {
+	max-width: 100%;
+	height: auto;
+}
+
+.img-holder {
+	display: block;
+	border-bottom: 1px solid @red;
+}
+
+.img-center {
+	clear: both;
+	display: block;
+	margin-left: auto;
+	margin-right: auto;
+}
+
+
+/* ================================================ */
+/* ! Footer */
+/* ================================================ */
+
+.footer {
+	.cf;
+	border-top: 1px dotted @grayLight;
+	margin-top: @baseline;
+	padding-top: @baseline;
+}
+
+
+
+
+/* ================================================ */
+/* ! Main Menu Naavigation */
+/* ================================================ */
+
+.navigation {
+	font-size: 13px;
+	position: absolute;
+	bottom: 0;
+	right: 0;
+	left: 0;
+}
+.ie6 .navigation {
+	position: static;
+	display: block;
+}
+.navigation ul,
+.navigation li{
+	margin: 0;
+}
+/* Menu positioning */
+.navigation .menu {
+	display: block;
+	float: right;
+}
+/* globar hyperlink style */
+.navigation a {
+	font-weight: bold;
+	font-size: @basefont + 1;
+	color: lighten(@black, 60%);
+	background: @white;
+	padding: 0 14px;
+	height: 35px;/* make this match */
+	line-height: 35px;/* make this match */
+}
+.menu li:hover ul,
+.menu li.sfHover ul {
+	top:			35px; /* make this match - ajust accordingly*/
+}
+/* Hyperlink on hover*/
+.navigation li:hover>a {
+	color: #333;
+	background: #f9f9f9;
+	//background: lighten(@black, 95%);
+	text-decoration: none;
+}
+/* Current menu item */
+.navigation .current>a {
+	color: #333;
+}
+/* top level menu */
+.navigation>ul>li {
+	//border-right: 5px solid red; /* note:stupid*/
+}
+/* top level hyperlink */
+.navigation>ul>li>a {
+	//border-top: 1px solid;
+	//border-bottom: 1px solid; uncomment for pretty border bottom
+	//border-color: lighten(@black, 90%); same as above
+}
+.navigation>ul>li>a,
+.navigation>ul>li:hover>a {
+	background: none;
+}
+.navigation>ul>li:first-child>a {} //first top menu item
+.navigation>ul>li:last-child>a {} //last top menu item
+
+/* first dropdown */
+.navigation>ul>li>ul {
+	margin-left: -3px;
+	padding: 0 3px 3px 3px;
+	.border-radius(0 0 3px 3px);
+	border-top: 1px solid lighten(@black, 90%);
+	background: lighten(@black, 90%);
+	background: rgba(0,0,0,0.1); //lighten(@black, 90%);
+	>li:first-child>a {
+		border-top: 3px solid #f5f5f5;
+	}
+	a {
+		height: auto;
+		padding: 10px 14px;
+		line-height: 1.2em;
+	}
+}
+/* Following dropdowns */
+.navigation ul ul ul {
+	padding: 3px;
+	.border-radius(0 3px 3px 3px);
+	background: lighten(@black, 90%);
+	background: rgba(0,0,0,0.1); //lighten(@black, 90%);
+}
+//both dropdowns
+.navigation>ul ul {
+}
+
+
+
+
+/* ================================================ */
+/* ! Media Queries */
+/* ================================================ */
+
+@media only screen and (min-width: 480px) {
+	/* Style adjustments for viewports 480px and over go here */
+}
+
+@media only screen and (min-width: 768px) {
+	/* Style adjustments for viewports 768px and over go here */
+}
+
+
+
+//Imports
+@import 'normalize/patterns';
+@import 'normalize/print';

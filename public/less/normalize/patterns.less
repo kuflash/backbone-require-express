@@ -1,0 +1,460 @@
+/* ================================================ */
+/* ! Breadcrumbs */
+/* ================================================ */
+
+.breadcrumb {
+	margin: 0 0 @baseline;
+	padding: 7px 14px;
+	border: 1px solid #ddd;
+	.border-radius(3px);
+	.box-shadow(inset 0 1px 0 @white);
+
+	li {
+		display: inline;
+		text-shadow: 0 1px 0 @white;
+	}
+
+	.divider {
+		padding: 0 5px;
+		color: @grayLight;
+	}
+
+	a {
+	}
+
+	.active a {
+		color: @grayDark;
+	}
+}
+
+
+
+
+/* ================================================ */
+/* ! Button Styles */
+/* ================================================ */
+
+/* !Shared colors for buttons and alerts */
+
+.btn,
+.message {
+	// Set text color
+	&.danger,
+	&.danger:hover,
+	&.error,
+	&.error:hover,
+	&.success,
+	&.success:hover,
+	&.info,
+	&.info:hover {
+		color: @white;
+	}
+
+	// Danger and error appear as red
+	&.danger,
+	&.error {
+		.gradientBar(#ee5f5b, #c43c35);
+	}
+
+	// Success appears as green
+	&.success {
+		.gradientBar(#62c462, #57a957);
+	}
+
+	// Info appears as a neutral blue
+	&.info {
+		.gradientBar(#5bc0de, #339bb9);
+	}
+}
+
+/* Base Button Style */
+
+input[type="button"],
+input[type="submit"],
+input[type="reset"],
+.btn {
+	// Button Base
+	cursor: pointer;
+	display: inline-block;
+	padding: 6px 14px 6px;
+	font-size: @basefont + 1;
+	line-height: normal;
+	border: 1px solid @grayLighter;
+	border-bottom-color: darken(@grayLighter, 8%);
+	.border-radius(3px);
+	@shadow: inset 0 1px 0 rgba(255,255,255,.2), 0 1px 2px rgba(0,0,0,.05);
+	.box-shadow(@shadow);
+	.gradientBar(#fff, darken(#fff, 10%));
+	color: @grayDark;
+	text-shadow: 0 1px 1px rgba(255,255,255,.75);
+
+	&:hover {
+		background-position: 0 -15px;
+		color: #333;
+		text-decoration: none;
+		//border-color: #aaa;
+	}
+
+	// Focus state for keyboard and accessibility
+	&:focus {
+		outline: 1px dotted #666;
+	}
+
+	// Primary Button Type
+	&.primary {
+	    color: @white;
+	    .gradientBar(#596578, #434c59);
+	}
+
+	 // Transitions
+	.transition(.1s linear all);
+
+	// Active and Disabled states
+	&:active {
+		@shadow: inset 0 2px 4px rgba(0,0,0,.25), 0 1px 2px rgba(0,0,0,.05);
+		//.box-shadow(@shadow);
+	}
+	&.disabled {
+		cursor: default;
+		background-image: none;
+		.reset-filter();
+		.opacity(65);
+		.box-shadow(none);
+	}
+	&[disabled] {
+		// disabled pseudo can't be included with .disabled
+		// def because IE8 and below will drop it ;_;
+		cursor: default;
+		background-image: none;
+		.reset-filter();
+		.opacity(65);
+		.box-shadow(none);
+	}
+
+	// Button Sizes
+	&.large {
+		font-size: @basefont + 2px;
+		line-height: normal;
+		padding: 8px 14px 8px;
+	}
+	&.small {
+		padding: 6px 12px 6px;
+		font-size: @basefont - 1px;
+	}
+}
+
+input + input,
+.btn + .btn,
+.btn + input,
+input + .btn {
+	margin-left: 6px;
+}
+
+// Super jank hack for removing border-radius from IE9 so we can keep filter gradients on alerts and buttons
+:root .alert-message,
+:root .btn {
+	border-radius: 0 \0;
+}
+
+// Help Firefox not be a jerk about adding extra padding to buttons
+button.btn,
+input[type=submit].btn {
+	&::-moz-focus-inner {
+		padding: 0;
+		border: 0;
+	}
+}
+
+
+
+
+/* ================================================ */
+/* ! Close Icon */
+/* ================================================ */
+
+.close {
+	float: right;
+	color: @black;
+	font-size: 20px;
+	font-weight: bold;
+	line-height: @baseline;
+	text-shadow: 0 1px 0 rgba(255,255,255,1);
+	.opacity(20);
+	&:hover {
+		color: @black;
+		text-decoration: none;
+		.opacity(40);
+	}
+}
+
+
+
+
+/* ================================================ */
+/* ! Error Styles */
+/* ================================================ */
+
+/* Base alert styles */
+
+.message {
+	position: relative;
+	padding: 7px 15px;
+	margin-bottom: @baseline;
+	color: @grayDark;
+	.gradientBar(#fceec1, #eedc94); // warning by default
+	text-shadow: 0 1px 0 rgba(255,255,255,.5);
+	border-width: 1px;
+	border-style: solid;
+	.border-radius(4px);
+	.box-shadow(inset 0 1px 0 rgba(255,255,255,.25));
+
+	// Adjust close icon
+	.close {
+		*margin-top: 3px; /* IE7 spacing */
+	}
+
+	// Remove extra margin from content
+	h5 {
+		line-height: @baseline;
+	}
+	p {
+		margin-bottom: 0;
+	}
+	div {
+		margin-top: 5px;
+		margin-bottom: 2px;
+		line-height: 28px;
+	}
+	.btn {
+		// Provide actions with buttons
+		.box-shadow(0 1px 0 rgba(255,255,255,.25));
+	}
+}
+
+
+
+
+/* ================================================ */
+/* ! Tabs */
+/* ================================================ */
+
+.tabs {
+	.cf;
+	//border-bottom: 1px solid #ececec;
+	border-bottom: 3px solid @grayLighter;
+	.border-radius(0 0 3px 3px);
+	> ul {
+		margin: 0;
+		padding: 0;
+
+		//tab selector container (li)
+		li {
+			float: left;
+			list-style: none;
+
+			&:first-child a {
+				.border-radius(3px 0 0 0);
+			}
+			&:last-child a {
+				.border-radius(0 3px 0 0);
+			}
+		}
+
+		//tab selector styling
+		a {
+			color: @grayDark;
+			font-weight: bold;
+			display: inline-block;
+			background: @grayLighter;
+			padding: 8px 20px;
+
+			.transition-all();
+
+			//active tab
+			&.active {
+				background: @grayDark;
+				color: @white;
+			}
+		}
+	}
+
+	//divs with the content
+	> div {
+		.border-radius(0 3px 0 0);
+		padding: 10px 15px;
+		border-width: 3px 3px 0 3px;
+		border-style: solid;
+		border-color: @grayLighter;
+	}
+}
+
+//hide tabs wien no javascript
+.no-js .tabs > ul {
+	display: none;
+}
+
+
+
+/* ================================================ */
+/* ! Boxes / Modules */
+/* ================================================ */
+
+.module {
+	padding: 10px 15px;
+	border: 3px solid @grayLighter;
+	.border-radius(3px);
+
+	.module-header {
+		background: @grayLighter;
+		margin: -10px -15px 10px -15px;
+		padding: 5px 15px 5px 15px;
+
+		span {
+			color: @grayLight;
+			float: right;
+			padding-left: 10px;
+		}
+	}
+}
+
+.collapse {
+	padding-bottom: 0;
+	.header {
+		margin-bottom: -2px;
+		cursor: pointer;
+	}
+	> div {
+		margin-top: 12px;
+		padding-bottom: 10px;
+	}
+}
+
+
+
+
+/* ================================================ */
+/* ! Radio/Ckeckbox show on selection */
+/* ================================================ */
+
+.checked-show {
+	padding-left: 2px;
+}
+.checked-info {
+	display: none;
+
+	p {
+		margin-bottom: 0;
+	}
+}
+.no-js .checked-info {
+	display: block;
+}
+
+
+
+
+
+/* ================================================ */
+/* ! Dropdown Menus */
+/* ================================================ */
+
+.menu, .sf-menu * {
+	margin:			0;
+	padding:		0;
+	list-style:		none;
+}
+.menu {
+	.cf;
+	line-height:	1.0;
+}
+.menu li {
+	list-style: none;
+}
+.menu ul {
+	position:		absolute;
+	top:			-999em;
+	width:			10em; /* left offset of submenus need to match (see below) */
+}
+.menu ul li {
+	width:			100%;
+}
+.menu li:hover {
+	visibility:		inherit; /* fixes IE7 'sticky bug' */
+}
+.menu li {
+	float:			left;
+	position:		relative;
+}
+.menu a {
+	display:		block;
+	position:		relative;
+}
+
+/* Menu Height */
+.menu li:hover ul,
+.menu li.sfHover ul {
+	left:			0;
+	/*top:			2.5em; match top ul list item height */
+	z-index:		99;
+}
+/* / Menu Height */
+
+ul.menu li:hover li ul,
+ul.menu li.sfHover li ul {
+	top:			-999em;
+}
+ul.menu li li:hover ul,
+ul.menu li li.sfHover ul {
+	left:			10em; /* match ul width */
+	top:			0;
+}
+ul.menu li li:hover li ul,
+ul.menu li li.sfHover li ul {
+	top:			-999em;
+}
+ul.menu li li li:hover ul,
+ul.menu li li li.sfHover ul {
+	left:			10em; /* match ul width */
+	top:			0;
+}
+
+/*** arrows **/
+.sf-menu a.sf-with-ul {
+	padding-right: 	2.25em;
+	min-width:		1px; /* trigger IE7 hasLayout so spans position accurately */
+}
+.sf-sub-indicator {
+	position:		absolute;
+	display:		block;
+	right:			.75em;
+	top:			1.05em; /* IE6 only */
+	width:			10px;
+	height:			10px;
+	text-indent: 	-999em;
+	overflow:		hidden;
+	background:		url('../images/arrows-ffffff.png') no-repeat -10px -100px; /* 8-bit indexed alpha png. IE6 gets solid image only */
+}
+a > .sf-sub-indicator {  /* give all except IE6 the correct values */
+	top:			.8em;
+	background-position: 0 -100px; /* use translucent arrow for modern browsers*/
+}
+/* apply hovers to modern browsers */
+a:focus > .sf-sub-indicator,
+a:hover > .sf-sub-indicator,
+a:active > .sf-sub-indicator,
+li:hover > a > .sf-sub-indicator,
+li.sfHover > a > .sf-sub-indicator {
+	background-position: -10px -100px; /* arrow hovers for modern browsers*/
+}
+
+/* point right for anchors in subs */
+.sf-menu ul .sf-sub-indicator { background-position:  -10px 0; }
+.sf-menu ul a > .sf-sub-indicator { background-position:  0 0; }
+/* apply hovers to modern browsers */
+.sf-menu ul a:focus > .sf-sub-indicator,
+.sf-menu ul a:hover > .sf-sub-indicator,
+.sf-menu ul a:active > .sf-sub-indicator,
+.sf-menu ul li:hover > a > .sf-sub-indicator,
+.sf-menu ul li.sfHover > a > .sf-sub-indicator {
+	background-position: -10px 0; /* arrow hovers for modern browsers*/
+}
